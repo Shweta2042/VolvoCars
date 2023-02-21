@@ -1,10 +1,15 @@
+import Image from 'next/image'
+import arrow from '../docs/chevron-circled.svg'
+
 export default function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
+    const { className, onClick } = props;
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", background: "red", margin: "50px" }}
-        onClick={onClick}
-      />
+        onClick={onClick}>
+          <Image  src={arrow} alt='next'  width={60} height={60} />
+        </div>
     );
   }
+
+  //className='h-96 max-w-xs w-10'
