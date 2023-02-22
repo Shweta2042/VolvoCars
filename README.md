@@ -1,7 +1,7 @@
 This is a really simple project that shows the usage of Next.js with TypeScript ( https://nextjs.org/docs )
 and tailwindcss (https://tailwindcss.com/docs/justify-content)
 
-Deploy the example using Vercel or preview live with https://volvo-cars-2ahnh6qsx-shweta2042.vercel.app/
+Deploy the example using Vercel or preview live on https://volvo-cars-jade.vercel.app/
 
 Run the project
 1. npm i

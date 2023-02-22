@@ -56,6 +56,7 @@ export default function Index() {
   if (isLoading) return <div>Loading...</div>
   if (!data) return null
   return (
+    <html lang="en">
     <div aria-live="polite" className='m-24'>
       <Head>
         <title>Car models</title>
@@ -77,7 +78,7 @@ export default function Index() {
     <div className="flex flex-col gap-x-10">
       <Slider {...settings}>
         {(filterCar.length >0 ? filterCar : data).map((t, index) => (
-          <div key={index}>
+          <div key={index} aria-hidden="true">
             <h1 className="uppercase leading-relaxed text-sm tracking-wide not-italic font-medium font-sans text-[#0000008f] mb-2">
               {t.bodyType}
             </h1>
@@ -100,7 +101,7 @@ export default function Index() {
           </div>
         ))}
       </Slider>
-    </div></div>
+    </div></div></html>
   )
 }
 
