@@ -20,7 +20,7 @@ export default function Index() {
   speed: 500,
   slidesToScroll: 1,
   infinite: false,
-  slidesToShow: noOfCards,
+  slidesToShow: slideToShow,
   nextArrow: noOfCards <= 1 ? false : <SampleNextArrow />,
   prevArrow: noOfCards  <= 1 ? false : <SamplePrevArrow />,
   arrows: noOfCards <= 1 ? false : true,
@@ -32,12 +32,9 @@ export default function Index() {
     const slickSlideWidth = slickSlide?.[0]?.clientHeight
     const slideNumber =  slickSliderWidth / (slickSlideWidth+12);
     noOfCards = Math.sign(slideNumber) > 0 ? slideNumber  > 1 ? slideNumber : 1 :1;
-    console.log(noOfCards, slickSliderWidth, slickSlideWidth, "in function");
     setSlideToShow(noOfCards);
   },
 };
-
-console.log(noOfCards,"in elemnet");
 
   const { data, error, isLoading } = useSWR<Cars[]>('/api/car', fetcher)
 
