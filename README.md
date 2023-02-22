@@ -1,7 +1,13 @@
+# Volvo Cars (Global Online Digital)
+
 This is a really simple project that shows the usage of Next.js with TypeScript ( https://nextjs.org/docs )
 and tailwindcss (https://tailwindcss.com/docs/justify-content)
 
 Deploy the example using Vercel or preview live on https://volvo-cars-jade.vercel.app/
+
+Fetaure
+1. Filter cars by bodyType
+2. Search cars by bodyType
 
 Run the project
 1. npm i
