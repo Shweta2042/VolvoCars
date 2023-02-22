@@ -8,60 +8,37 @@ import type { Cars } from '../interfaces'
 import SamplePrevArrow from '../components/PrevArrow';
 import SampleNextArrow from '../components/NextArrow';
 import Learn from '../components/Learn';
+import { useState } from 'react';
 
-const settings = {
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
+let noOfCards = 1 
+
+export default function Index() {
+  const [slideToShow, setSlideToShow] = useState(noOfCards)
+  const settings = {
   speed: 500,
   slidesToScroll: 1,
   infinite: false,
-  responsive: [
-    {
-      breakpoint: 2000,
-      settings: {
-        slidesToShow: 4,
-        dots: true,
-      }
-    },
-    {
-      breakpoint: 2000,
-      settings: {
-        slidesToShow: 4,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
-        arrows: true,
-      }
-    },
-    {
-      breakpoint: 1400,
-      settings: {
-        slidesToShow: 3,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
-        arrows: true,
-      }
-    },
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 2,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
-        arrows: true,
-      }
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 1,
-        dots: true,
-        
-      }
-    }
-  ]
+  slidesToShow: noOfCards,
+  nextArrow: noOfCards <= 1 ? false : <SampleNextArrow />,
+  prevArrow: noOfCards  <= 1 ? false : <SamplePrevArrow />,
+  arrows: noOfCards <= 1 ? false : true,
+  dots: noOfCards <= 1 ? true : false,
+  onReInit: function() {
+    const slickSlider = document.getElementsByClassName("slick-slider") as HTMLCollectionOf<HTMLElement>;
+    const slickSlide = document.getElementsByClassName("slick-slide") as HTMLCollectionOf<HTMLElement>;
+    const slickSliderWidth = slickSlider?.[0]?.clientWidth
+    const slickSlideWidth = slickSlide?.[0]?.clientHeight
+    const slideNumber =  slickSliderWidth / (slickSlideWidth+12);
+    noOfCards = Math.sign(slideNumber) > 0 ? slideNumber  > 1 ? slideNumber : 1 :1;
+    console.log(noOfCards, slickSliderWidth, slickSlideWidth, "in function");
+    setSlideToShow(noOfCards);
+  },
 };
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+console.log(noOfCards,"in elemnet");
 
-export default function Index() {
   const { data, error, isLoading } = useSWR<Cars[]>('/api/car', fetcher)
 
   if (error) return <div>Failed to load</div>
@@ -69,7 +46,7 @@ export default function Index() {
   if (!data) return null
 
   return (
-    <div className='mx-24'><div className="leading-5 text-2xl not-italic font-medium font-sans my-24 flex justify-center text-[#000000eb]">All Models</div>
+    <div aria-live="polite" className='mx-24'><div className="leading-5 text-2xl not-italic font-medium font-sans my-24 flex justify-center text-[#000000eb]">All Models</div>
     <div className="flex flex-col gap-x-10">
       <Slider {...settings}>
         {data.map((t, index) => (
@@ -78,17 +55,20 @@ export default function Index() {
               {t.bodyType}
             </h1>
             <h1 className="capitalize leading-6 text-base tracking-wide not-italic font-medium font-sans text-[#000000eb] mb-5">{t.modelName}
-              <span className="lowercase leading-6 text-base tracking-wide not-italic font-light font-sans text-[#0000008f]">  {t.modelType}</span>
+              <span role="img" aria-label="from" className="lowercase leading-6 text-base tracking-wide not-italic font-light font-sans text-[#0000008f]">  {t.modelType}</span>
             </h1>
             <Image
-              className='h-300 w-300'
+              data-i18n-title={t.modelName}
+              title={t.modelName}
+              aria-label= {t.modelName}
+              className='hover:scale-105'
               src={t.imageUrl}
               alt="Picture of the author"
               width={300}
               height={300} />
-            <div className = 'flex flex-row flex-1 gap-x-4 mt-5 text-[#2a609d]'>
-              <Link href="/car/[id]" as={`/car/${t.id}`}> <Learn data = {{title:"Learn"}}/></Link>
-              <Link href="https://www.volvocars.com/in/v/cars/s90/shop"> <Learn data = {{title:"Shop"}}/>  </Link>
+            <div className = 'flex flex-row flex-1 gap-x-10 mt-5 text-[#2a609d] justify-center'>
+              <Link href="/car/[id]" as={`/car/${t.id}`}> <Learn data = {{title:"Learn", i18Title: "Learn More about car" }}/></Link>
+              <Link href="https://www.volvocars.com/in/v/cars/s90/shop"> <Learn data = {{title:"Shop", i18Title: "Shop Car"}}/>  </Link>
             </div>
           </div>
         ))}

@@ -17,6 +17,7 @@
   opacity: 0.3;
 }
 
-.slick-dots li button:before{
-  top: 2rem !important;
+.slick-dots{
+  white-space: nowrap !important;
+  bottom: -40px !important;
 }
