@@ -77,20 +77,17 @@ export default function Index() {
     <div role="region" aria-label="Slick window" className="flex flex-col gap-x-10">
       <Slider {...settings}>
         {(filterCar.length >0 ? filterCar : data).map((t, index) => (
-          <div key={index} aria-hidden="true">
+          <div key={index} aria-label={t?.modelName}>
             <h1 className="uppercase leading-relaxed text-sm tracking-wide not-italic font-medium font-sans text-[#0000008f] mb-2">
-              {t.bodyType}
+              {t?.bodyType}
             </h1>
-            <h1 className="capitalize leading-6 text-base tracking-wide not-italic font-medium font-sans text-[#000000eb] mb-5">{t.modelName}
-              <span role="img" aria-label="from" className="lowercase leading-6 text-base tracking-wide not-italic font-light font-sans text-[#0000008f]"> {t.modelType}</span>
+            <h1 className="capitalize leading-6 text-base tracking-wide not-italic font-medium font-sans text-[#000000eb] mb-5">{t?.modelName}
+              <span role="img" aria-label="from" className="lowercase leading-6 text-base tracking-wide not-italic font-light font-sans text-[#0000008f]"> {t?.modelType}</span>
             </h1>
             <Image
-              data-i18n-title={t.modelName}
-              title={t.modelName}
-              aria-label= {t.modelName}
               className='hover:scale-105'
-              src={t.imageUrl}
-              alt= {t.modelName}
+              src={t?.imageUrl}
+              alt= {t?.modelName}
               width={300}
               height={300} />
             <div className = 'flex flex-row flex-1 gap-x-10 mt-5 text-[#2a609d] justify-center'>
