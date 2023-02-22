@@ -6,5 +6,5 @@ Deploy the example using Vercel or preview live on https://volvo-cars-jade.verce
 Run the project
 1. npm i
 2. npm run dev  
-3  started server on 0.0.0.0:3000
+3.  started server on 0.0.0.0:3000
    url: http://localhost:3000
