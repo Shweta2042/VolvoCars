@@ -55,7 +55,7 @@ export default function Index() {
   if (isLoading) return <div>Loading...</div>
   if (!data) return null
   return (
-    <html lang="en">
+    <html>
     <div role="main" className='m-24'>
       <Head>
         <title>Car models</title>
