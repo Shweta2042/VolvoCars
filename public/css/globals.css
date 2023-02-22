@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .slick-prev, .slick-next {
-  top: 100% !important;
+  top: 106% !important;
   height: 40px !important;
   width: 40px !important;
 }
