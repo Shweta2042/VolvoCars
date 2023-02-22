@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useEffect, useRef } from 'react';
 import arrow from '../docs/chevron-circled.svg'
 
-export default function SampleNextArrow(props) {
+export default function NextArrow(props) {
     const { className, onClick } = props;
     const ref= useRef(null);
     useEffect(
@@ -11,10 +11,10 @@ export default function SampleNextArrow(props) {
       },[]
     )
     return (
-      <button aria-label="Next arrow" ref={ref}
+      <button title="Next arrow" ref={ref}
         className={className}
         onClick={onClick}>
-          <Image  src={arrow} alt='next'  width={60} height={60} />
+          <Image  src={arrow} alt='nextArrow'  width={60} height={60} />
         </button>
     );
   }

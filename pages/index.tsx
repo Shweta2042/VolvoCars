@@ -5,12 +5,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import useSWR from 'swr'
 import type { Cars } from '../interfaces'
-import SamplePrevArrow from '../components/PrevArrow';
-import SampleNextArrow from '../components/NextArrow';
+import PrevArrow from '../components/PrevArrow';
+import NextArrow from '../components/NextArrow';
 import Learn from '../components/Learn';
 import { useState } from 'react';
 import Head from 'next/head';
-import vercel  from '../docs/vercel.svg'
 
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
@@ -27,8 +26,8 @@ export default function Index() {
   slidesToScroll: 1,
   infinite: false,
   slidesToShow: slideToShow,
-  nextArrow: noOfCards <= 1 ? false : <SampleNextArrow />,
-  prevArrow: noOfCards  <= 1 ? false : <SamplePrevArrow />,
+  nextArrow: noOfCards <= 1 ? false : <NextArrow />,
+  prevArrow: noOfCards  <= 1 ? false : <PrevArrow />,
   arrows: noOfCards <= 1 ? false : true,
   dots: noOfCards <= 1 ? true : false,
   onReInit: function() {
@@ -57,17 +56,17 @@ export default function Index() {
   if (!data) return null
   return (
     <html lang="en">
-    <div aria-live="polite" className='m-24'>
+    <div role="main" className='m-24'>
       <Head>
         <title>Car models</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="icon" type="image/svg" sizes="16x16" href="../docs/vercel.svg" />
       </Head>
-      <div className="leading-5 text-2xl not-italic font-medium font-sans mb-12 flex justify-center text-[#000000eb]">All Models</div>
+      <h1 className="leading-5 text-2xl not-italic font-medium font-sans mb-12 flex justify-center text-[#000000eb]">All Models</h1>
       <div className='w-11/12 m-auto flex flex-col mb-12 justify-between items-start md:items-center md:gap-0'>
       <label className='leading-relaxed text-xs tracking-wide not-italic font-medium font-sans text-[#0000008f]' htmlFor="searchForCar">Search for your favourite car</label>
-        <input className='p-1 border-black border rounded-md lowercase leading-relaxed text-base tracking-wide not-italic font-light font-sans text-[#aa4242eb]'
+        <input aria-label="Search input" className='p-1 border-black border rounded-md lowercase leading-relaxed text-base tracking-wide not-italic font-light font-sans text-[#aa4242eb]'
           onChange={handleChange}
           type="text"
           id="roll"
@@ -75,7 +74,7 @@ export default function Index() {
           required
         />
         </div>
-    <div className="flex flex-col gap-x-10">
+    <div role="region" aria-label="Slick window" className="flex flex-col gap-x-10">
       <Slider {...settings}>
         {(filterCar.length >0 ? filterCar : data).map((t, index) => (
           <div key={index} aria-hidden="true">

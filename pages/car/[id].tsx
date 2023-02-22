@@ -24,29 +24,10 @@ export default function PersonPage() {
   if (!data) return null
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Body Type</th>
-          <th>Model Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          {isValidating ? (
-            <td colSpan={7} align="center">
-              Validating...
-            </td>
-          ) : (
-            <>
-              <td>{data.modelName}</td>
-              <td>{data.bodyType}</td>
-              <td>{data.modelType}</td>
-            </>
-          )}
-        </tr>
-      </tbody>
-    </table>
+    <div className='mx-12 my-24 flex flex-col gap-5 capitalize leading-6 text-base tracking-wide not-italic font-medium font-sans text-[#000000eb]'>
+      <h1>Name: {data.modelName}</h1>
+      <h1>Body Type: {data.bodyType}</h1>
+      <h1>Model Type: {data.modelName}</h1>
+    </div>
   )
 }
