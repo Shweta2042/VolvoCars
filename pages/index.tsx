@@ -75,7 +75,7 @@ export default function Index() {
         />
         </div>
     <div role="region" aria-label="Slick window" className="flex flex-col gap-x-10">
-      <Slider {...settings}>
+      <Slider aria-hidden="true" {...settings}>
         {(filterCar.length >0 ? filterCar : data).map((t, index) => (
           <div key={index}>
             <h1 className="uppercase leading-relaxed text-sm tracking-wide not-italic font-medium font-sans text-[#0000008f] mb-2">
@@ -93,7 +93,7 @@ export default function Index() {
               alt= {t.modelName}
               width={300}
               height={300} />
-            <div aria-hidden="true" className = 'flex flex-row flex-1 gap-x-10 mt-5 text-[#2a609d] justify-center'>
+            <div className = 'flex flex-row flex-1 gap-x-10 mt-5 text-[#2a609d] justify-center'>
               <Link href="/car/[id]" as={`/car/${t.id}`}> <Learn data = {{title:"Learn", i18Title: "Learn More about car" }}/></Link>
               <Link href="https://www.volvocars.com/in/v/cars/s90/shop"> <Learn data = {{title:"Shop", i18Title: "Shop Car"}}/>  </Link>
             </div>
