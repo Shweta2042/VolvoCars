@@ -6,8 +6,8 @@ and tailwindcss (https://tailwindcss.com/docs/justify-content)
 Deploy the example using Vercel or preview live on https://volvo-cars-jade.vercel.app/
 
 Fetaure
-1. Filter cars by bodyType
-2. Search cars by bodyType
+1. Filter cars by body Type
+2. Search cars by Model Name
 
 Run the project
 1. npm i

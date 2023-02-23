@@ -44,12 +44,20 @@ export default function Index() {
 
   //filter query settings
   const handleChange = (e) => {
+    const query = e?.target?.value 
+    const filterCar = data.filter((el) => {
+      return el.modelName.includes(query) ;
+    })
+    setFilterCar(filterCar);
+  }
+
+  const handlebodyTypeChange = (e) => {
     if (e === "All") {
       e = '';
     }
-    const query = e?.target?.value || e
+    const query = e
     const filterCar = data.filter((el) => {
-      return el.bodyType.includes(query);
+      return el.bodyType.includes(query) ;
     })
     setFilterCar(filterCar);
   }
@@ -86,21 +94,21 @@ export default function Index() {
       </Head>
       <body>
         <div role="main" className='m-24'>
+        <h1 className="leading-5 text-2xl not-italic font-medium font-sans mb-12 flex justify-center text-[#000000eb]">All Models</h1>
           <div className='w-11/12 m-auto flex flex-col mb-12 justify-between items-start md:items-center md:gap-0'>
             <label className='leading-relaxed text-xs tracking-wide not-italic font-medium font-sans text-[#0000008f]' htmlFor="searchForCar">Search for your favourite car</label>
-            <input aria-label="Search input" tabIndex={0} className='p-1 border-black border rounded-md lowercase leading-relaxed text-base tracking-wide not-italic font-light font-sans text-[#aa4242eb]'
+            <input aria-label="Search input" tabIndex={0} className='p-1 border-black border rounded-md uppercase leading-relaxed text-base tracking-wide not-italic font-light font-sans text-[#aa4242eb]'
               onChange={handleChange}
               type="text"
               id="roll"
               name="roll"
             />
           </div>
-          <h1 className="leading-5 text-2xl not-italic font-medium font-sans mb-12 flex justify-center text-[#000000eb]">All Models</h1>
           <div role="button" className='flex flex-row flex-1 gap-x-5 mb-12 justify-center'>
             {
               bodyTypeHash.map((key, index) => (
                 <div key={index} onClick={() => {
-                  handleChange(Object.keys(key)[0])
+                  handlebodyTypeChange(Object.keys(key)[0])
                 }} className='uppercase leading-relaxed text-sm tracking-wide not-italic font-medium font-sans text-[#0000008f] mb-2'>
                   {`${Object.keys(key)[0]} (${Object.values(key)[0]} )`}
                 </div>
