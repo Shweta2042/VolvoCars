@@ -99,8 +99,7 @@ export default function Index() {
         <div role="main" className='m-24'>
         <h1 className="leading-5 text-2xl not-italic font-medium font-sans mb-5 flex justify-center text-[#000000eb]">All Models</h1>
           <div className='w-11/12 m-auto flex flex-col mb-12 items-start'>
-            <label className='leading-relaxed text-xs tracking-wide not-italic font-medium font-sans text-[#0000008f]' htmlFor="searchForCar">Search car by model name</label>
-            <input value={searchQuery} autoFocus aria-label="Search input" tabIndex={0} className='p-1 border-black border rounded-md uppercase leading-relaxed text-base tracking-wide not-italic font-light font-sans text-[#aa4242eb]'
+            <input placeholder="Search..." value={searchQuery} autoFocus aria-label="Search input" tabIndex={0} className='p-1 border-black border rounded-md uppercase leading-relaxed text-base tracking-wide not-italic font-light font-sans text-[#aa4242eb]'
               onChange={handleChange}
               type="text"
               id="roll"
